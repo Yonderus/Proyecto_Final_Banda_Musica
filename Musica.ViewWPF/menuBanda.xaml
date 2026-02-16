@@ -1,0 +1,43 @@
+﻿<Window x:Class="Musica.ViewWPF.menuBanda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Musica.ViewWPF"
+        mc:Ignorable="d"
+        Title="menu" Height="650" Width="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="257*"/>
+            <RowDefinition Height="207*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF9F0E0E" Offset="1"/>
+                <GradientStop Color="#FF04042A" Offset="0.043"/>
+                <GradientStop Color="#FF950D0F" Offset="0.939"/>
+                <GradientStop Color="#FF9D0D0E" Offset="0.988"/>
+                <GradientStop Color="#FE040429" Offset="0.045"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label x:Name="lbl_titulo_menu" Content="Gestión SM Vila Bocairent" HorizontalAlignment="Left" Margin="184,79,0,0" VerticalAlignment="Top" Foreground="White" FontSize="32" FontWeight="Bold" FontFamily="MS UI Gothic"/>
+
+        <Image Margin="96,55,404,172" Source="/LogoBandaAniversario30años.png" Stretch="Fill"/>
+        <Border Grid.Column="0"
+          Background="#CC0B1220"
+          BorderBrush="#33FFFFFF"
+          BorderThickness="1"
+          CornerRadius="14"
+          Padding="16" Margin="84,177,84,33" Grid.RowSpan="2"/>
+        <Image HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="208" Source="/logo_banda_grande.png" Margin="10,24,0,0"/>
+        <StackPanel Margin="110,205,107,33" Grid.RowSpan="2">
+            <Button x:Name="btbMiembrosBanda" Content="Miembros Banda" Width="386" Height="60" Background="#FFE8F3FF" FontSize="22" FontFamily="MS Gothic" FontWeight="Bold" Margin="0,0,0,30" Click="btbMiembrosBanda_Click"/>
+            <Button x:Name="btbInstrumentos" Content="Instrumentos" Width="386" Height="60" Background="#FFE8F3FF" FontSize="22" FontWeight="Bold" FontFamily="MS Gothic" Margin="0,0,0,30" Click="btbInstrumentos_Click"/>
+            <Button x:Name="btbActuaciones" Content="Actuaciones" Width="386" Height="60" Background="#FFE8F3FF" FontSize="22" FontWeight="Bold" FontFamily="MS Gothic" Click="btbActuaciones_Click" Margin="0,0,0,30"/>
+            <Button x:Name="btbListas" Content="Listas" Width="386" Height="60" Background="#FFE8F3FF" FontWeight="Bold" FontFamily="MS Gothic" FontSize="22" Margin="0,0,0,30" Click="btbListas_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BandaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actuacion">
+          <Key>
+            <PropertyRef Name="IdActuacion" />
+          </Key>
+          <Property Name="IdActuacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Lugar" Type="varchar" MaxLength="80" />
+          <Property Name="IdTipoActuacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instrumento">
+          <Key>
+            <PropertyRef Name="IdInstrumento" />
+          </Key>
+          <Property Name="IdInstrumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListaActuacion">
+          <Key>
+            <PropertyRef Name="IdLista" />
+          </Key>
+          <Property Name="IdLista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdActuacion" Type="int" Nullable="false" />
+          <Property Name="IdMusico" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Musico">
+          <Key>
+            <PropertyRef Name="IdMusico" />
+          </Key>
+          <Property Name="IdMusico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="IdInstrumento" Type="int" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="TipoActuacion">
+          <Key>
+            <PropertyRef Name="IdTipoActuacion" />
+          </Key>
+          <Property Name="IdTipoActuacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Actuacion__IdTip__2B3F6F97">
+          <End Role="TipoActuacion" Type="Self.TipoActuacion" Multiplicity="1" />
+          <End Role="Actuacion" Type="Self.Actuacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoActuacion">
+              <PropertyRef Name="IdTipoActuacion" />
+            </Principal>
+            <Dependent Role="Actuacion">
+              <PropertyRef Name="IdTipoActuacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ListaActu__IdAct__2E1BDC42">
+          <End Role="Actuacion" Type="Self.Actuacion" Multiplicity="1" />
+          <End Role="ListaActuacion" Type="Self.ListaActuacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actuacion">
+              <PropertyRef Name="IdActuacion" />
+            </Principal>
+            <Dependent Role="ListaActuacion">
+              <PropertyRef Name="IdActuacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ListaActu__IdMus__2F10007B">
+          <End Role="Musico" Type="Self.Musico" Multiplicity="1" />
+          <End Role="ListaActuacion" Type="Self.ListaActuacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musico">
+              <PropertyRef Name="IdMusico" />
+            </Principal>
+            <Dependent Role="ListaActuacion">
+              <PropertyRef Name="IdMusico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Musico__IdInstru__267ABA7A">
+          <End Role="Instrumento" Type="Self.Instrumento" Multiplicity="1" />
+          <End Role="Musico" Type="Self.Musico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instrumento">
+              <PropertyRef Name="IdInstrumento" />
+            </Principal>
+            <Dependent Role="Musico">
+              <PropertyRef Name="IdInstrumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BandaModelStoreContainer">
+          <EntitySet Name="Actuacion" EntityType="Self.Actuacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instrumento" EntityType="Self.Instrumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListaActuacion" EntityType="Self.ListaActuacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musico" EntityType="Self.Musico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoActuacion" EntityType="Self.TipoActuacion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Actuacion__IdTip__2B3F6F97" Association="Self.FK__Actuacion__IdTip__2B3F6F97">
+            <End Role="TipoActuacion" EntitySet="TipoActuacion" />
+            <End Role="Actuacion" EntitySet="Actuacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ListaActu__IdAct__2E1BDC42" Association="Self.FK__ListaActu__IdAct__2E1BDC42">
+            <End Role="Actuacion" EntitySet="Actuacion" />
+            <End Role="ListaActuacion" EntitySet="ListaActuacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ListaActu__IdMus__2F10007B" Association="Self.FK__ListaActu__IdMus__2F10007B">
+            <End Role="Musico" EntitySet="Musico" />
+            <End Role="ListaActuacion" EntitySet="ListaActuacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Musico__IdInstru__267ABA7A" Association="Self.FK__Musico__IdInstru__267ABA7A">
+            <End Role="Instrumento" EntitySet="Instrumento" />
+            <End Role="Musico" EntitySet="Musico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BandaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actuacion">
+          <Key>
+            <PropertyRef Name="IdActuacion" />
+          </Key>
+          <Property Name="IdActuacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Lugar" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoActuacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoActuacion" Relationship="Self.FK__Actuacion__IdTip__2B3F6F97" FromRole="Actuacion" ToRole="TipoActuacion" />
+          <NavigationProperty Name="ListaActuacion" Relationship="Self.FK__ListaActu__IdAct__2E1BDC42" FromRole="Actuacion" ToRole="ListaActuacion" />
+        </EntityType>
+        <EntityType Name="Instrumento">
+          <Key>
+            <PropertyRef Name="IdInstrumento" />
+          </Key>
+          <Property Name="IdInstrumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Musico" Relationship="Self.FK__Musico__IdInstru__267ABA7A" FromRole="Instrumento" ToRole="Musico" />
+        </EntityType>
+        <EntityType Name="ListaActuacion">
+          <Key>
+            <PropertyRef Name="IdLista" />
+          </Key>
+          <Property Name="IdLista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdActuacion" Type="Int32" Nullable="false" />
+          <Property Name="IdMusico" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Actuacion" Relationship="Self.FK__ListaActu__IdAct__2E1BDC42" FromRole="ListaActuacion" ToRole="Actuacion" />
+          <NavigationProperty Name="Musico" Relationship="Self.FK__ListaActu__IdMus__2F10007B" FromRole="ListaActuacion" ToRole="Musico" />
+        </EntityType>
+        <EntityType Name="Musico">
+          <Key>
+            <PropertyRef Name="IdMusico" />
+          </Key>
+          <Property Name="IdMusico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdInstrumento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instrumento" Relationship="Self.FK__Musico__IdInstru__267ABA7A" FromRole="Musico" ToRole="Instrumento" />
+          <NavigationProperty Name="ListaActuacion" Relationship="Self.FK__ListaActu__IdMus__2F10007B" FromRole="Musico" ToRole="ListaActuacion" />
+          <Property Name="Apellidos" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TipoActuacion">
+          <Key>
+            <PropertyRef Name="IdTipoActuacion" />
+          </Key>
+          <Property Name="IdTipoActuacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actuacion" Relationship="Self.FK__Actuacion__IdTip__2B3F6F97" FromRole="TipoActuacion" ToRole="Actuacion" />
+        </EntityType>
+        <Association Name="FK__Actuacion__IdTip__2B3F6F97">
+          <End Role="TipoActuacion" Type="Self.TipoActuacion" Multiplicity="1" />
+          <End Role="Actuacion" Type="Self.Actuacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoActuacion">
+              <PropertyRef Name="IdTipoActuacion" />
+            </Principal>
+            <Dependent Role="Actuacion">
+              <PropertyRef Name="IdTipoActuacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ListaActu__IdAct__2E1BDC42">
+          <End Role="Actuacion" Type="Self.Actuacion" Multiplicity="1" />
+          <End Role="ListaActuacion" Type="Self.ListaActuacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actuacion">
+              <PropertyRef Name="IdActuacion" />
+            </Principal>
+            <Dependent Role="ListaActuacion">
+              <PropertyRef Name="IdActuacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Musico__IdInstru__267ABA7A">
+          <End Role="Instrumento" Type="Self.Instrumento" Multiplicity="1" />
+          <End Role="Musico" Type="Self.Musico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instrumento">
+              <PropertyRef Name="IdInstrumento" />
+            </Principal>
+            <Dependent Role="Musico">
+              <PropertyRef Name="IdInstrumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ListaActu__IdMus__2F10007B">
+          <End Role="Musico" Type="Self.Musico" Multiplicity="1" />
+          <End Role="ListaActuacion" Type="Self.ListaActuacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musico">
+              <PropertyRef Name="IdMusico" />
+            </Principal>
+            <Dependent Role="ListaActuacion">
+              <PropertyRef Name="IdMusico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BandaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actuacion" EntityType="Self.Actuacion" />
+          <EntitySet Name="Instrumento" EntityType="Self.Instrumento" />
+          <EntitySet Name="ListaActuacion" EntityType="Self.ListaActuacion" />
+          <EntitySet Name="Musico" EntityType="Self.Musico" />
+          <EntitySet Name="TipoActuacion" EntityType="Self.TipoActuacion" />
+          <AssociationSet Name="FK__Actuacion__IdTip__2B3F6F97" Association="Self.FK__Actuacion__IdTip__2B3F6F97">
+            <End Role="TipoActuacion" EntitySet="TipoActuacion" />
+            <End Role="Actuacion" EntitySet="Actuacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ListaActu__IdAct__2E1BDC42" Association="Self.FK__ListaActu__IdAct__2E1BDC42">
+            <End Role="Actuacion" EntitySet="Actuacion" />
+            <End Role="ListaActuacion" EntitySet="ListaActuacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Musico__IdInstru__267ABA7A" Association="Self.FK__Musico__IdInstru__267ABA7A">
+            <End Role="Instrumento" EntitySet="Instrumento" />
+            <End Role="Musico" EntitySet="Musico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ListaActu__IdMus__2F10007B" Association="Self.FK__ListaActu__IdMus__2F10007B">
+            <End Role="Musico" EntitySet="Musico" />
+            <End Role="ListaActuacion" EntitySet="ListaActuacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BandaModelStoreContainer" CdmEntityContainer="BandaEntities">
+          <EntitySetMapping Name="Actuacion">
+            <EntityTypeMapping TypeName="BandaModel.Actuacion">
+              <MappingFragment StoreEntitySet="Actuacion">
+                <ScalarProperty Name="IdActuacion" ColumnName="IdActuacion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+                <ScalarProperty Name="IdTipoActuacion" ColumnName="IdTipoActuacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instrumento">
+            <EntityTypeMapping TypeName="BandaModel.Instrumento">
+              <MappingFragment StoreEntitySet="Instrumento">
+                <ScalarProperty Name="IdInstrumento" ColumnName="IdInstrumento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListaActuacion">
+            <EntityTypeMapping TypeName="BandaModel.ListaActuacion">
+              <MappingFragment StoreEntitySet="ListaActuacion">
+                <ScalarProperty Name="IdLista" ColumnName="IdLista" />
+                <ScalarProperty Name="IdActuacion" ColumnName="IdActuacion" />
+                <ScalarProperty Name="IdMusico" ColumnName="IdMusico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musico">
+            <EntityTypeMapping TypeName="BandaModel.Musico">
+              <MappingFragment StoreEntitySet="Musico">
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="IdMusico" ColumnName="IdMusico" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdInstrumento" ColumnName="IdInstrumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoActuacion">
+            <EntityTypeMapping TypeName="BandaModel.TipoActuacion">
+              <MappingFragment StoreEntitySet="TipoActuacion">
+                <ScalarProperty Name="IdTipoActuacion" ColumnName="IdTipoActuacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
