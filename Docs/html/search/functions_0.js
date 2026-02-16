@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['agregar_0',['Agregar',['../class_musica_1_1_controller_1_1_a_p_i__s_1_1_actuaciones_api.html#a2ad4e782a5f12618fa9be10bd7952572',1,'Musica.Controller.API_s.ActuacionesApi.Agregar()'],['../class_musica_1_1_controller_1_1_a_p_i__s_1_1_instrumentos_api.html#a0f23f1a5e65ece86174e581eb37babdd',1,'Musica.Controller.API_s.InstrumentosApi.Agregar()'],['../class_musica_1_1_controller_1_1_a_p_i__s_1_1_listas_api.html#a1644a277f70683e171c7bb8097324b55',1,'Musica.Controller.API_s.ListasApi.Agregar()'],['../class_musica_1_1_controller_1_1_a_p_i__s_1_1_miembros_api.html#a3465b7d1638bf5ad377205665e1cc133',1,'Musica.Controller.API_s.MiembrosApi.Agregar()'],['../class_musica_1_1_controller_1_1_a_p_i__s_1_1_tipos_actuaciones_api.html#a641bae6ba6089b74e5b0dbee1d7b2ad1',1,'Musica.Controller.API_s.TiposActuacionesApi.Agregar()']]]
+];
