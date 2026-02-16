@@ -54,6 +54,10 @@ namespace Musica.Model.Repositorios
             var instrumento = _db.Instrumento.Find(id);
             if (instrumento != null)
             {
+                var tieneMusicos = _db.Musico.Any(m => m.IdInstrumento == instrumento.IdInstrumento);
+                if (tieneMusicos)
+                    throw new Exception("No se puede eliminar el instrumento porque hay músicos vinculados.");
+
                 _db.Instrumento.Remove(instrumento);
                 _db.SaveChanges();
             }

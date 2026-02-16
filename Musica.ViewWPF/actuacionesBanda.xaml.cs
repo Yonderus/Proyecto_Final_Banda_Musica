@@ -116,11 +116,23 @@ namespace Musica.ViewWPF
         /// </summary>
         private void btbEliminar_Click(object sender, RoutedEventArgs e)
         {
-            var actuacionEliminar = (Actuacion)dgvActuaciones.SelectedItem;
+            try
+            {
+                var actuacionEliminar = dgvActuaciones.SelectedItem as Actuacion;
+                if (actuacionEliminar == null)
+                {
+                    MessageBox.Show("Debe seleccionar una actuación para eliminar.");
+                    return;
+                }
 
-            _ActuacionesApi.Eliminar(actuacionEliminar.IdActuacion);
+                _ActuacionesApi.Eliminar(actuacionEliminar.IdActuacion);
 
-            CargarDatos();
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>

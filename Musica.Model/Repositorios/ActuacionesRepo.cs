@@ -59,6 +59,10 @@ namespace Musica.Model.Repositorios
             var actuacion = _db.Actuacion.Find(id);
             if (actuacion != null)
             {
+                var tieneListas = _db.ListaActuacion.Any(l => l.IdActuacion == actuacion.IdActuacion);
+                if (tieneListas)
+                    throw new Exception("No se puede eliminar la actuación porque tiene músicos asignados (listas).");
+
                 _db.Actuacion.Remove(actuacion);
                 _db.SaveChanges();
             }
