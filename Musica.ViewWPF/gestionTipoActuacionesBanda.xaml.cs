@@ -44,11 +44,10 @@ namespace Musica.ViewWPF
             var seleccionado = dgvTipoActuaciones.SelectedItem as TipoActuacion;
             if (seleccionado == null)
             {
-                tb_tipoActuacion.Text = string.Empty;
                 return;
             }
 
-            tb_tipoActuacion.Text = seleccionado.Nombre ?? string.Empty;
+            tb_tipoActuacion.Text = seleccionado.Nombre;
         }
 
         /// <summary>
