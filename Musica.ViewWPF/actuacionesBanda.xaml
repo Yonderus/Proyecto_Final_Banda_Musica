@@ -175,6 +175,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel>
@@ -213,6 +215,19 @@
                                 Foreground="White"
                                 Background="#FFDC2626"
                                 BorderThickness="0" Click="btbEliminar_Click"/>
+
+                        <Button Grid.Column="5"
+                                x:Name="btbLimpiar"
+                                Content="Limpiar"
+                                MinWidth="110"
+                                Height="40"
+                                FontFamily="Segoe UI"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Background="#FF1F2937"
+                                BorderBrush="#33FFFFFF"
+                                BorderThickness="1" Click="btbLimpiar_Click"/>
                     </Grid>
 
                     <DataGrid x:Name="dgvActuaciones" Grid.Row="2"

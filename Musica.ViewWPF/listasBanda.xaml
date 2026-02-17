@@ -144,6 +144,19 @@
                             BorderThickness="1"
                             Click="btbInforme_Click" Height="40" Width="286" Margin="0,14,0,0"/>
 
+                    <Button x:Name="btbLimpiar"
+                            Content="Limpiar"
+                            Margin="0,14,0,0"
+                            Height="40"
+                            FontFamily="Segoe UI"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Background="#FF1F2937"
+                            BorderBrush="#33FFFFFF"
+                            BorderThickness="1"
+                            Click="btbLimpiar_Click"/>
+
                     <Button x:Name="btbVolver"
                             Content="Volver a la página anterior"
                             Margin="0,14,0,0"

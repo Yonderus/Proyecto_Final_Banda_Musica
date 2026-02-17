@@ -80,7 +80,7 @@
                     <TextBox x:Name="tb_tipoActuacion" Height="34" FontFamily="Segoe UI" FontSize="13" Margin="0,0,0,40"/>
 
                     <Button Content="Agregar"
-                        Margin="0,16,0,225"
+                        Margin="0,16,0,150"
                         Height="40"
                         FontFamily="Segoe UI"
                         FontSize="14"
@@ -88,6 +88,20 @@
                         Foreground="White"
                         Background="#FF9D0D0E"
                         BorderThickness="0" Click="Agregar_Click"/>
+
+                    <Button x:Name="btbLimpiar"
+                            Content="Limpiar"
+                            Margin="0,14,0,30"
+                            Height="40"
+                            FontFamily="Segoe UI"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Background="#FF1F2937"
+                            BorderBrush="#33FFFFFF"
+                            BorderThickness="1"
+                            Click="btbLimpiar_Click"/>
+
                     <Button x:Name="btbGestionTipoActuaciones"
             Content="Volver a la página anterior"
             FontFamily="Segoe UI"

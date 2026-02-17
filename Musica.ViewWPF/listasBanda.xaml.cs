@@ -169,5 +169,17 @@ namespace Musica.ViewWPF
             var rp = new InformesListas();
             rp.Show();
         }
+
+        /// <summary>
+        /// <b>Limpiar</b><br/>
+        /// Limpia los combos, el texto de instrumento y la selección de la tabla.
+        /// </summary>
+        private void btbLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            cbActuacion.SelectedIndex = -1;
+            cbMusico.SelectedIndex = -1;
+            txtInstrumentoSeleccionado.Text = string.Empty;
+            dgvListas.UnselectAll();
+        }
     }
 }

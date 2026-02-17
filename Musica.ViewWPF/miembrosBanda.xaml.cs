@@ -189,5 +189,19 @@ namespace Musica.ViewWPF
             var rp = new InformesMusico();
             rp.Show();
         }
+
+        /// <summary>
+        /// <b>Limpiar campos</b><br/>
+        /// Limpia los campos del formulario y la selección de la tabla.
+        /// </summary>
+        private void btbLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            cbInstrumento.SelectedIndex = -1;
+            tbNombre.Text = string.Empty;
+            tbApellidos.Text = string.Empty;
+            tbTelefono.Text = string.Empty;
+            tbEmail.Text = string.Empty;
+            dgvMiembros.UnselectAll();
+        }
     }
 }

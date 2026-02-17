@@ -208,5 +208,19 @@ namespace Musica.ViewWPF
             var rp = new InformesActuaciones();
             rp.Show();
         }
+
+        /// <summary>
+        /// <b>Limpiar campos</b><br/>
+        /// Limpia los campos del formulario.
+        /// </summary>
+        private void btbLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            // Limpia los campos del formulario
+            cbTipoActuacion.SelectedIndex = -1;
+            tb_TituloActuacion.Text = string.Empty;
+            dtp_FechaActuacion.SelectedDate = null;
+            tb_LugarActuacion.Text = string.Empty;
+            dgvActuaciones.UnselectAll();
+        }
     }
 }

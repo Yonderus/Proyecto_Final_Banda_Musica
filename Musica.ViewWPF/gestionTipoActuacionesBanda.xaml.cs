@@ -118,5 +118,15 @@ namespace Musica.ViewWPF
                 MessageBox.Show(ex.Message);
             }
         }
+
+        /// <summary>
+        /// <b>Limpiar</b><br/>
+        /// Limpia el campo de texto y la selección de la tabla.
+        /// </summary>
+        private void btbLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            tb_tipoActuacion.Text = string.Empty;
+            dgvTipoActuaciones.UnselectAll();
+        }
     }
 }
