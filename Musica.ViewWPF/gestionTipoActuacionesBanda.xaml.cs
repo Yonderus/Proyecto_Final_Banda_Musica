@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Musica.Controller.API_s;
 using Musica.Model;
 
@@ -22,7 +12,8 @@ namespace Musica.ViewWPF
     /// </summary>
     public partial class gestionTipoActuacionesBanda : Window
     {
-            private readonly TiposActuacionesApi _tiposActuacionesApi = new TiposActuacionesApi();
+        private readonly TiposActuacionesApi _tiposActuacionesApi = new TiposActuacionesApi();
+
         public gestionTipoActuacionesBanda()
         {
             InitializeComponent();
@@ -50,6 +41,14 @@ namespace Musica.ViewWPF
 
         private void dgvTipoActuaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var seleccionado = dgvTipoActuaciones.SelectedItem as TipoActuacion;
+            if (seleccionado == null)
+            {
+                tb_tipoActuacion.Text = string.Empty;
+                return;
+            }
+
+            tb_tipoActuacion.Text = seleccionado.Nombre ?? string.Empty;
         }
 
         /// <summary>
@@ -58,13 +57,42 @@ namespace Musica.ViewWPF
         /// </summary>
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            TipoActuacion tipoactuacion = new TipoActuacion
+            try
             {
-                Nombre = tb_tipoActuacion.Text,
-            };
+                _tiposActuacionesApi.Agregar(tb_tipoActuacion.Text);
+                tb_tipoActuacion.Text = string.Empty;
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            _tiposActuacionesApi.Agregar(tipoactuacion.Nombre);
-            CargarDatos();
+        /// <summary>
+        /// <b>Editar</b><br/>
+        /// Edita el tipo de actuación seleccionado usando el texto de la caja.
+        /// </summary>
+        private void btbEditar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var seleccionado = dgvTipoActuaciones.SelectedItem as TipoActuacion;
+                if (seleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de actuación para editar.");
+                    return;
+                }
+
+                seleccionado.Nombre = tb_tipoActuacion.Text;
+
+                _tiposActuacionesApi.Editar(seleccionado);
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -75,9 +103,15 @@ namespace Musica.ViewWPF
         {
             try
             {
-                var eliminiarTipoActuacion = (TipoActuacion)dgvTipoActuaciones.SelectedItem;
+                var eliminiarTipoActuacion = dgvTipoActuaciones.SelectedItem as TipoActuacion;
+                if (eliminiarTipoActuacion == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de actuación para eliminar.");
+                    return;
+                }
 
                 _tiposActuacionesApi.Eliminar(eliminiarTipoActuacion);
+                tb_tipoActuacion.Text = string.Empty;
                 CargarDatos();
             }
             catch (Exception ex)

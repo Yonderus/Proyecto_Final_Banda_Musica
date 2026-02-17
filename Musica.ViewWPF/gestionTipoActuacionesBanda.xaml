@@ -146,7 +146,8 @@
                             Foreground="White"
                             Background="#FF1F2937"
                             BorderBrush="#33FFFFFF"
-                            BorderThickness="1"/>
+                            BorderThickness="1"
+                            Click="btbEditar_Click"/>
 
                         <Button Grid.Column="3"
                             x:Name="btbEliminar"
